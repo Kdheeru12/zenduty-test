@@ -1,5 +1,19 @@
 # zenduty-go-sdk
+ Zenduty API client in Go, primarily used by [Zenduty](https://github.com/Kdheeru12/terraform-zenduty) provider in Terraform.
  
+ ## Installation
+```bash
+go get github.com/Kdheeru12/zenduty-test/client
+```
+
+
+## Getting started
+Before you begin making use of the SDK, make sure you have your Zenduty Access Token.
+
+```
+import "github.com/Kdheeru12/zenduty-test/client"
+
+```
 
 ## Example usage
 ```go

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "http://zenduty-beanstalk-stage-dev.us-east-1.elasticbeanstalk.com"
+	defaultBaseURL = "https://www.zenduty.com"
 )
 
 type service struct {

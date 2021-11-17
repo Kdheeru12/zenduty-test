@@ -7,7 +7,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/zenduty/go-sdk"
+
+	"github.com/Kdheeru12/zenduty-test/client"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 	fmt.Printf("%+v\n", resp)
 
 }
+
 
 ```
 

@@ -12,19 +12,19 @@ type Services struct {
 	Creation_Date          string `json:"creation_date"`
 	Summary                string `json:"summary"`
 	Description            string `json:"description"`
-	Unique_Id              string `json:"unique_id"`
-	Auto_Resolve_Timeout   int    `json:"auto_resolve_timeout"`
-	Created_By             string `json:"created_by"`
+	Unique_Id              string `json:"unique_id",omitempty`
+	Auto_Resolve_Timeout   int    `json:"auto_resolve_timeout",omitempty`
+	Created_By             string `json:"created_by",omitempty`
 	Team_Priority          string `json:"team_priority"`
 	Task_Template          string `json:"task_template"`
-	Acknowledgment_Timeout int    `json:"acknowledge_timeout"`
-	Status                 int    `json:"status"`
+	Acknowledgment_Timeout int    `json:"acknowledge_timeout",omitempty`
+	Status                 int    `json:"status",omitempty`
 	Escalation_Policy      string `json:"escalation_policy"`
 	Team                   string `json:"team"`
 	Sla                    string `json:"sla"`
 	Collation_Time         int    `json:"collation_time"`
 	Collation              int    `json:"collation"`
-	Under_Maintenance      bool   `json:"under_maintenance"`
+	Under_Maintenance      bool   `json:"under_maintenance",omitempty`
 }
 
 func (c *Service) CreateService(team string, service *Services) (*Services, error) {

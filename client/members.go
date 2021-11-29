@@ -8,11 +8,10 @@ import (
 type MemberService service
 
 type Member struct {
-	Unique_Id    string `json:"unique_id"`
-	Team         string `json:"team"`
-	User         string `json:"user"`
-	Joining_Date string `json:"joining_date"`
-	Role         int    `json:"role"`
+	Unique_Id string `json:"unique_id",omitempty`
+	Team      string `json:"team",omitempty`
+	User      string `json:"user",omitempty`
+	Role      int    `json:"role",omitempty`
 }
 
 type MemberResponse struct {
@@ -23,14 +22,14 @@ type MemberResponse struct {
 	Role         int    `json:"role"`
 }
 
-func (c *MemberService) CreateTeamMember(team string, member *Member) (*Member, error) {
+func (c *MemberService) CreateTeamMember(team string, member *Member) (*MemberResponse, error) {
 	path := fmt.Sprintf("/api/account/teams/%s/members/", team)
 
 	body, err := c.client.newRequestDo("POST", path, member)
 	if err != nil {
 		return nil, err
 	}
-	var s Member
+	var s MemberResponse
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err
@@ -38,13 +37,13 @@ func (c *MemberService) CreateTeamMember(team string, member *Member) (*Member, 
 	return &s, nil
 }
 
-func (c *MemberService) UpdateTeamMember(member *Member) (*Member, error) {
+func (c *MemberService) UpdateTeamMember(member *Member) (*MemberResponse, error) {
 	path := fmt.Sprintf("/api/account/teams/%s/members/%s/", member.Team, member.Unique_Id)
 	body, err := c.client.newRequestDo("PATCH", path, member)
 	if err != nil {
 		return nil, err
 	}
-	var s Member
+	var s MemberResponse
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err

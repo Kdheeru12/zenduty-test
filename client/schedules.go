@@ -11,12 +11,12 @@ type Restrictions struct {
 	Duration       int    `json:"duration"`
 	StartDayOfWeek int    `json:"start_day_of_week"`
 	StartTimeOfDay string `json:"start_time_of_day"`
-	Unique_Id      string `json:"unique_id"`
+	Unique_Id      string `json:"unique_id",omitempty`
 }
 type Users struct {
 	User      string `json:"user"`
 	Position  int    `json:"position"`
-	Unique_Id string `json:"unique_id"`
+	Unique_Id string `json:"unique_id",omitempty`
 }
 
 type Overrides struct {
@@ -24,7 +24,7 @@ type Overrides struct {
 	User      string `json:"user"`
 	StartTime string `json:"start_time"`
 	EndTime   string `json:"end_time"`
-	Unique_Id string `json:"unique_id"`
+	Unique_Id string `json:"unique_id",omitempty`
 }
 type Layers struct {
 	ShiftLength       int            `json:"shift_length"`
@@ -33,8 +33,8 @@ type Layers struct {
 	RotationEndTime   string         `json:"rotation_end_time"`
 	UniqueId          string         `json:"unique_id"`
 	LastEdited        string         `json:"last_edited"`
-	RestrictionType   int            `json:"restriction_type"`
-	IsActive          bool           `json:"is_active"`
+	RestrictionType   int            `json:"restriction_type",omitempty`
+	IsActive          bool           `json:"is_active",omitempty`
 	Restrictions      []Restrictions `json:"restrictions"`
 	Users             []Users        `json:"users"`
 }
@@ -45,7 +45,7 @@ type Schedules struct {
 	Summary     string      `json:"summary"`
 	Time_zone   string      `json:"time_zone"`
 	Team        string      `json:"team"`
-	Unique_Id   string      `json:"unique_id"`
+	Unique_Id   string      `json:"unique_id",omitempty`
 	Layers      []Layers    `json:"layers"`
 	Overrides   []Overrides `json:"overrides"`
 }

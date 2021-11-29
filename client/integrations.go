@@ -20,6 +20,13 @@ type ApplicationReference struct {
 	Categories          string `json:"categories"`
 	Documentation_Link  string `json:"documentation_link"`
 }
+
+type IntegrationCreate struct {
+	Name        string `json:"name"`
+	Summary     string `json:"summary"`
+	Application string `json:"application"`
+}
+
 type Integration struct {
 	Name                  string               `json:"name"`
 	Creation_Date         string               `json:"creation_date"`
@@ -37,7 +44,7 @@ type Integration struct {
 	Default_Urgency       int                  `json:"default_urggency"`
 }
 
-func (c *IntegrationServerice) CreateIntegration(team string, service_id string, integration *Integration) (*Integration, error) {
+func (c *IntegrationServerice) CreateIntegration(team string, service_id string, integration *IntegrationCreate) (*Integration, error) {
 	path := fmt.Sprintf("/api/account/teams/%s/services/%s/integrations/", team, service_id)
 
 	body, err := c.client.newRequestDo("POST", path, integration)

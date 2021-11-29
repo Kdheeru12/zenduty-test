@@ -21,6 +21,11 @@ type members struct {
 	Joining_Date string `json:"joining_date"`
 	Role         int    `json:"role"`
 }
+
+type CreateTeams struct {
+	Name      string `json:"name"`
+	Unique_Id string `json:"unique_id",omitempty`
+}
 type Team struct {
 	Unique_Id     string    `json:"unique_id"`
 	Name          string    `json:"name"`
@@ -31,7 +36,7 @@ type Team struct {
 	Members       []members `json:"members"`
 }
 
-func (c *TeamService) CreateTeam(team *Team) (*Team, error) {
+func (c *TeamService) CreateTeam(team *CreateTeams) (*Team, error) {
 	path := "/api/account/teams/"
 	body, err := c.client.newRequestDo("POST", path, team)
 	if err != nil {
@@ -45,7 +50,7 @@ func (c *TeamService) CreateTeam(team *Team) (*Team, error) {
 	return &t, nil
 }
 
-func (c *TeamService) UpdateTeam(id string, team *Team) (*Team, error) {
+func (c *TeamService) UpdateTeam(id string, team *CreateTeams) (*Team, error) {
 
 	path := fmt.Sprintf("/api/account/teams/%s/", id)
 	res, err := c.client.newRequestDo("PATCH", path, team)

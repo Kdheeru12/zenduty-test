@@ -18,7 +18,7 @@ type errorResponse struct {
 type Error struct {
 	ErrorResponse *Response
 	Code          int         `json:"code,omitempty"`
-	Errors        interface{} `json:"errors,omitempty"`
+	Errors        interface{} `json:"error,omitempty"`
 	Message       string      `json:"message,omitempty"`
 }
 

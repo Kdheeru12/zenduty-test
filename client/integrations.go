@@ -86,3 +86,12 @@ func (c *IntegrationServerice) GetIntegrationByID(team, service_id, id string) (
 	}
 	return &i, nil
 }
+
+func (c *IntegrationServerice) DeleteIntegration(team, service_id, id string) error {
+	path := fmt.Sprintf("/api/account/teams/%s/services/%s/integrations/%s/", team, service_id, id)
+	_, err := c.client.newRequestDo("DELETE", path, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}

@@ -22,14 +22,14 @@ type MemberResponse struct {
 	Role         int    `json:"role"`
 }
 
-func (c *MemberService) CreateTeamMember(team string, member *Member) (*MemberResponse, error) {
+func (c *MemberService) CreateTeamMember(team string, member *Member) (*Member, error) {
 	path := fmt.Sprintf("/api/account/teams/%s/members/", team)
 
 	body, err := c.client.newRequestDo("POST", path, member)
 	if err != nil {
 		return nil, err
 	}
-	var s MemberResponse
+	var s Member
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err
@@ -37,13 +37,13 @@ func (c *MemberService) CreateTeamMember(team string, member *Member) (*MemberRe
 	return &s, nil
 }
 
-func (c *MemberService) UpdateTeamMember(member *Member) (*MemberResponse, error) {
+func (c *MemberService) UpdateTeamMember(member *Member) (*Member, error) {
 	path := fmt.Sprintf("/api/account/teams/%s/members/%s/", member.Team, member.Unique_Id)
 	body, err := c.client.newRequestDo("PATCH", path, member)
 	if err != nil {
 		return nil, err
 	}
-	var s MemberResponse
+	var s Member
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err

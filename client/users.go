@@ -20,7 +20,7 @@ type GetUsers struct {
 }
 
 func (c *UserService) GetUsers(email string) ([]GetUsers, error) {
-	path := fmt.Sprintf("/api/account/teams/%s/services/", email)
+	path := "/api/account/users"
 
 	body, err := c.client.newRequestDo("GET", path, nil)
 	if err != nil {

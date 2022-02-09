@@ -36,6 +36,7 @@ type Client struct {
 	Esp          *EspService
 	Members      *MemberService
 	Invite       *InviteService
+	Users        *UserService
 }
 
 type Response struct {
@@ -71,6 +72,7 @@ func NewClient(config *Config) (*Client, error) {
 	c.Esp = &EspService{c}
 	c.Members = &MemberService{c}
 	c.Invite = &InviteService{c}
+	c.Users = &UserService{c}
 
 	return c, nil
 

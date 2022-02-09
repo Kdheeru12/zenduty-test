@@ -59,6 +59,8 @@ type CreateSchedule struct {
 	Team        string         `json:"team"`
 	Layers      []CreateLayers `json:"layers"`
 	Overrides   []Overrides    `json:"overrides"`
+	Unique_Id   string      `json:"unique_id",omitempty`
+
 }
 type Schedules struct {
 	Name        string      `json:"name"`

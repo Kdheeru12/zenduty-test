@@ -17,6 +17,7 @@ type Users struct {
 	User      string `json:"user"`
 	Position  int    `json:"position"`
 	Unique_Id string `json:"unique_id",omitempty`
+	Username  string `json:"username",omitempty`
 }
 
 type Overrides struct {

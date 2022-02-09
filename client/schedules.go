@@ -17,7 +17,6 @@ type Users struct {
 	User      string `json:"user"`
 	Position  int    `json:"position"`
 	Unique_Id string `json:"unique_id",omitempty`
-	Username  string `json:"username",omitempty`
 }
 
 type Overrides struct {
@@ -40,6 +39,27 @@ type Layers struct {
 	Users             []Users        `json:"users"`
 }
 
+type CreateUserLayer struct {
+	User string `json:"user"`
+}
+type CreateLayers struct {
+	ShiftLength       int               `json:"shift_length"`
+	Name              string            `json:"name"`
+	RotationStartTime string            `json:"rotation_start_time"`
+	RotationEndTime   string            `json:"rotation_end_time"`
+	RestrictionType   int               `json:"restriction_type",omitempty`
+	Users             []CreateUserLayer `json:"users"`
+}
+
+type CreateSchedule struct {
+	Name        string         `json:"name"`
+	Description string         `json:"description"`
+	Summary     string         `json:"summary"`
+	Time_zone   string         `json:"time_zone"`
+	Team        string         `json:"team"`
+	Layers      []CreateLayers `json:"layers"`
+	Overrides   []Overrides    `json:"overrides"`
+}
 type Schedules struct {
 	Name        string      `json:"name"`
 	Description string      `json:"description"`
@@ -51,14 +71,14 @@ type Schedules struct {
 	Overrides   []Overrides `json:"overrides"`
 }
 
-func (c *ScheduleService) CreateSchedule(team string, schedule *Schedules) (*Schedules, error) {
+func (c *ScheduleService) CreateSchedule(team string, schedule *CreateSchedule) (*CreateSchedule, error) {
 
 	path := fmt.Sprintf("/api/account/teams/%s/schedules/", team)
 	body, err := c.client.newRequestDo("POST", path, schedule)
 	if err != nil {
 		return nil, err
 	}
-	var s Schedules
+	var s CreateSchedule
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err
@@ -103,14 +123,14 @@ func (c *ScheduleService) DeleteScheduleByID(team, id string) error {
 	return nil
 }
 
-func (c *ScheduleService) UpdateScheduleByID(team, id string, schedule *Schedules) (*Schedules, error) {
+func (c *ScheduleService) UpdateScheduleByID(team, id string, schedule *CreateSchedule) (*CreateSchedule, error) {
 
 	path := fmt.Sprintf("/api/account/teams/%s/schedules/%s/", team, id)
 	body, err := c.client.newRequestDo("PATCH", path, schedule)
 	if err != nil {
 		return nil, err
 	}
-	var s Schedules
+	var s CreateSchedule
 	err = json.Unmarshal(body.BodyBytes, &s)
 	if err != nil {
 		return nil, err

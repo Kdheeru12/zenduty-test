@@ -2,7 +2,6 @@ package client
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 type UserService service

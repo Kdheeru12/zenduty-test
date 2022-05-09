@@ -37,9 +37,6 @@ type Client struct {
 	Members      *MemberService
 	Invite       *InviteService
 	Users        *UserService
-	AlertRules   *AlertRuleService
-	Priority     *PriorityService
-	Tags         *TagsService
 }
 
 type Response struct {
@@ -76,9 +73,6 @@ func NewClient(config *Config) (*Client, error) {
 	c.Members = &MemberService{c}
 	c.Invite = &InviteService{c}
 	c.Users = &UserService{c}
-	c.AlertRules = &AlertRuleService{c}
-	c.Priority = &PriorityService{c}
-	c.Tags = &TagsService{c}
 
 	return c, nil
 
